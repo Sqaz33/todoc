@@ -6,6 +6,7 @@ Text {
     property string firstText;
     property string secondText;
     text: firstText
+    wrapMode: Text.WordWrap
 
     function swap() {
         hideAnim.start()
@@ -13,7 +14,7 @@ Text {
 
     NumberAnimation on opacity {
         id: showAnim
-        duration: txt.duration / 2
+        duration: txt.duration * 0.9
         easing.type: Easing.InOutQuad 
         running: false
         from: 0
@@ -22,7 +23,7 @@ Text {
 
     NumberAnimation on opacity {
         id: hideAnim
-        duration: txt.duration / 2
+        duration: txt.duration * 0.1
         easing.type: Easing.InOutQuad 
         running: false
         from: 1
