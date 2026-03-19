@@ -13,37 +13,38 @@ Window {
         color: "#A7C67B"
         property bool blur: false
 
-        // Flickable {
-        //     id: flick
-        //     width: col.width
-        //     height: parent.height
-        //     clip: true
+        Flickable {
+            id: flick
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: col.width
+            height: parent.height
+            clip: true
 
-        //     anchors.horizontalCenter: parent.horizontalCenter
-
-        //     contentWidth: col.width    
-        //     contentHeight: col.height  
-
-            Column {
+            contentWidth: col.width    
+            contentHeight: col.height  
+            
+            Rectangle {
                 id: col
+                color: scene.color
                 anchors.left: parent.left
-                spacing: 1
-                width: 200
 
-                property int count: 2
+                property int spacing: 1
+                property int count: 10
 
+                width: 300
                 height: (count * 100 + spacing * count)
 
                 Repeater {
                     model: col.count
-                    delegate: ARec { 
-                        color: "#824ca7"; 
-                        dragItem: dragArea.setDragTarget
-                        stickItem: dragArea.releaseDragTarget
+
+                    delegate: ARec {
+                        color: "#824ca7"
+
+                        y: index * (height + col.spacing)
                     }
                 }
             }
-        // }
+        }
 
         layer.enabled: true
         layer.effect: MultiEffect {

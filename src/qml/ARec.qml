@@ -7,9 +7,6 @@ Item {
     width: 100
     height: 100
 
-    property var dragItem: function(id) { }
-    property var stickItem: function() { }
-
     Rectangle {
         id: rect
         anchors.fill: parent
@@ -44,7 +41,6 @@ Item {
         shadowHorizontalOffset: 10
     }
 
-
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
@@ -57,7 +53,5 @@ Item {
             anim.start()
         }
     }
-
-
 }
 
