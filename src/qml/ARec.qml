@@ -4,11 +4,11 @@ import QtQuick.Effects
 Item {
     id: item
     property color color
-    // anchors.left: parent.left
     width: 100
     height: 100
 
-    property var onClick: function(id) { }
+    property var dragItem: function(id) { }
+    property var stickItem: function() { }
 
     Rectangle {
         id: rect
@@ -18,9 +18,9 @@ Item {
         ASwText {
             id: txt
             anchors.centerIn: parent
-            duration: 200
+            duration: 300
             firstText: "txt1"
-            secondText: "txt2293749027\n234234\n23424243"
+            secondText: "txt2293749027\n234234\n23424243sdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdf"
             color: "white"
         }
     }
@@ -30,27 +30,10 @@ Item {
         duration: 300
         easing.type: Easing.InOutQuad 
         running: false
-        onStopped: {
-            if (item.width === 200) {
-                txt.swap()
-            }
-        }
         onStarted: {
-            if (item.width === 200) {
-                txt.swap()
-            }
+            txt.swap()
         }
     }  
-
-    MouseArea {
-        anchors.fill: parent
-        propagateComposedEvents: true
-        onClicked: {
-            anim.to = item.width === 100 ? 200 : 100
-            anim.start()
-            onClick(item)
-        }
-    }
 
     MultiEffect {
         anchors.fill: rect
@@ -60,6 +43,21 @@ Item {
         shadowBlur: 1.0
         shadowHorizontalOffset: 10
     }
+
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+
+        onPressed: drag.target = item
+        onReleased: drag.target = null
+
+        onClicked: {
+            anim.to = item.width === 100 ? 200 : 100
+            anim.start()
+        }
+    }
+
 
 }
 

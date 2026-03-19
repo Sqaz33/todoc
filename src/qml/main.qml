@@ -13,16 +13,16 @@ Window {
         color: "#A7C67B"
         property bool blur: false
 
-        Flickable {
-            id: flick
-            width: col.width
-            height: parent.height
-            clip: true
+        // Flickable {
+        //     id: flick
+        //     width: col.width
+        //     height: parent.height
+        //     clip: true
 
-            anchors.horizontalCenter: parent.horizontalCenter
+        //     anchors.horizontalCenter: parent.horizontalCenter
 
-            contentWidth: col.width    
-            contentHeight: col.height  
+        //     contentWidth: col.width    
+        //     contentHeight: col.height  
 
             Column {
                 id: col
@@ -30,26 +30,20 @@ Window {
                 spacing: 1
                 width: 200
 
-                property int count: 10
+                property int count: 2
 
                 height: (count * 100 + spacing * count)
 
                 Repeater {
                     model: col.count
-                    delegate: ARec { color: "#824ca7"; onClick: dragArea.setDragTarget }
+                    delegate: ARec { 
+                        color: "#824ca7"; 
+                        dragItem: dragArea.setDragTarget
+                        stickItem: dragArea.releaseDragTarget
+                    }
                 }
             }
-        }
-
-        MouseArea {
-            id: dragArea
-            anchors.fill: parent
-            propagateComposedEvents: true
-
-            function setDragTarget(target) {
-                drag.target = target
-            }
-        }
+        // }
 
         layer.enabled: true
         layer.effect: MultiEffect {
