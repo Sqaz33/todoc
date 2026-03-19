@@ -13,8 +13,7 @@ public:
     }
 };
 
-int main(int argc, char *argv[])
-{   
+int main(int argc, char *argv[]) {   
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
@@ -22,7 +21,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("backend", &backend);
 
     using namespace Qt::StringLiterals;
-    const QUrl url(u"qrc:/main.qml"_s);
+    const QUrl url(u"qrc:/qml/main.qml"_s);
     
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
